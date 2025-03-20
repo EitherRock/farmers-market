@@ -30,3 +30,6 @@ __pycache__/
 
 # Ignore virtual environments
 venv/
+
+# Environment Variables
+.env
