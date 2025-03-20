@@ -52,56 +52,55 @@ const ContactForm = () => {
 
   return (
     <div className="max-w-lg mx-auto p-4 bg-white rounded shadow-lg">
-      <h2 className="text-2xl font-semibold text-center mb-4">Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Name</label>
+          <label className="block text-sm font-medium text-[#1a1a1a]">Name</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-[#1a1a1a] border-[#D4AF37] border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <label className="block text-sm font-medium text-[#1a1a1a]">Email</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-[#1a1a1a] border-[#D4AF37] border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Subject</label>
+          <label className="block text-sm font-medium text-[#1a1a1a]">Subject</label>
           <input
             type="text"
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-[#1a1a1a] border-[#D4AF37] border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Message</label>
+          <label className="block text-sm font-medium text-[#1a1a1a]">Message</label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             rows="4"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-[#1a1a1a] border-[#D4AF37] border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900"
             required
           ></textarea>
         </div>
 
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
+        <button type="submit" className="w-full text-white hover:text-[#D4AF37] py-2 rounded-md">
           Send Message
         </button>
       </form>

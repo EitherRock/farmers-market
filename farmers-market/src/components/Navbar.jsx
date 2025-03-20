@@ -1,13 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';  // We'll use React Router for navigation
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className='"bg-blue-500 p-4'>
-      <ul className='flex justify-around'>
-        <li><Link to="/" className='text-white'>Home</Link></li>
-        <li><Link to="/about" className='text-white'>About</Link></li>
-        <li><Link to="/contact" className='text-white'>Contact</Link></li>
+    <nav className="w-full flex justify-between pt-8 pb-4 pl-20 pr-20">
+      <p className="flex justify-start text-xl text-white space-x-4">Sulphur Springs Farmers Market</p>
+      <ul className="flex justify-end space-x-4">
+        <li>
+          <Link to="/" className="text-xl text-white hover:text-[#D4AF37]">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className=" text-xl text-white hover:text-[#D4AF37]">
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" className="text-xl text-white hover:text-[#D4AF37]">
+            Contact
+          </Link>
+        </li>
       </ul>
     </nav>
   );

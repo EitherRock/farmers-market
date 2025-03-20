@@ -7,10 +7,20 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+EMAIL_TO = os.getenv('EMAIL_TO')
+EMAIL_FROM = os.getenv('EMAIL_FROM')
+EMAIL_PASS = os.getenv('EMAIL_PASSWORD')
+
+
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",
+    'http://localhost:5173',
 ]
 
 app.add_middleware(
@@ -28,10 +38,9 @@ class ContactForm(BaseModel):
     message: str
 
 def send_mail(form_data: ContactForm):
-    sender_email = 'lesmann.dev@gmail.com'
-    # receiver_email = 'nathanlesmann@gmail.com'
-    receiver_email = 'magpiemeadowsnwa@gmail.com'
-    password = 'wzzz buyh qybw uylj'
+    sender_email = EMAIL_FROM
+    receiver_email = EMAIL_TO
+    password = EMAIL_PASS
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
