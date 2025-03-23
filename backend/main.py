@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 import smtplib
@@ -36,6 +36,9 @@ class ContactForm(BaseModel):
     email: str
     subject: str
     message: str
+
+class ResourceFile(BaseModel):
+    file_name: str
 
 def send_mail(form_data: ContactForm):
     sender_email = EMAIL_FROM
@@ -78,3 +81,11 @@ async def send_email_route(form_data: ContactForm):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f'Error sending email: {str(e)}'
         )
+    
+@app.get('/api/download/{file_name}')
+async def download_file(file_name):
+    file_path = f'backend/resources/{file_name}'
+    if os.path.exists(file_path):
+        return FileResponse(file_path, filename=file_name, media_type="application.octet-stream")
+    
+    return {"error": "File not found"}

@@ -51,7 +51,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white rounded shadow-lg">
+    <div className="max-w-lg mx-auto p-4 bg-white rounded-md">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-[#1a1a1a]">Name</label>
@@ -105,7 +105,7 @@ const ContactForm = () => {
         </button>
       </form>
 
-      {status && <p className="mt-4 text-center text-sm text-gray-700">{status}</p>}
+      {status && <p className="mt-4 text-center text-sm text-[#1a1a1a]">{status}</p>}
     </div>
   );
 };
