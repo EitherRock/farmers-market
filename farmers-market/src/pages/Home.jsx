@@ -5,7 +5,7 @@ const Home = () => {
     <div>
       <div className="w-full h-[300px] relative">
         <img
-          src="vegetable_banner.jpg"
+          src="/vegetable_banner.jpg"
           alt="Beautiful landscape"
           className="w-full h-full object-cover"
         />
