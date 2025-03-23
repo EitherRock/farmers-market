@@ -1,0 +1,29 @@
+# Stage 1: Build the React app
+FROM node:18 AS build
+
+# Set the working directory for the frontend
+WORKDIR /app
+
+# Copy package.json and package-lock.json for installing dependencies
+COPY ./farmers-market/package.json ./farmers-market/package-lock.json ./farmers-market/
+
+# Install dependencies
+RUN npm install --prefix ./farmers-market
+
+# Copy the rest of the frontend files
+COPY ./farmers-market ./farmers-market
+
+# Build the React app using Vite
+RUN npm run build --prefix ./farmers-market
+
+# Stage 2: Serve the app using Nginx
+FROM nginx:alpine
+
+# Copy the build files from the previous stage
+COPY --from=build /app/farmers-market/dist /usr/share/nginx/html
+
+# Expose the port Nginx will use
+EXPOSE 80
+
+# Run Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
