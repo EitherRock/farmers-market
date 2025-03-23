@@ -11,9 +11,9 @@ const Home = () => {
         />
       </div>
 
-      <div className="text-center mt-6">
-        <h1 className="text-4xl font-bold max-w-xl mx-auto">
-          Welcome to the Sulphur Springs Farmers Market
+      <div className="text-center mt-8">
+        <h1 className="text-xl font-bold mx-auto">
+          Sulphur Springs Farmers Market
         </h1>
         <p className="text-white">Find fresh produce, local goods, and much more!</p>
         <GoogleMap />
