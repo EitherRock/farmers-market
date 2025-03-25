@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    image: nlesmann/farmersmarket-backend:latest  # Pulls from Docker Hub
+    env_file: 
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    restart: always  # Ensures it restarts if it crashes
+
+  nginx:
+    image: nlesmann/farmersmarket-nginx:latest  # Pulls from Docker Hub
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: always  # Ensures Nginx restarts if it fails
+
+networks:
+  app-network:
+    driver: bridge

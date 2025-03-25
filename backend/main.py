@@ -20,7 +20,7 @@ EMAIL_PASS = os.getenv('EMAIL_PASSWORD')
 app = FastAPI()
 
 origins = [
-    'http://localhost:3000',
+    'http://localhost',
 ]
 
 app.add_middleware(
