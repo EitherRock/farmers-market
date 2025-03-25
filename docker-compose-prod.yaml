@@ -15,11 +15,15 @@ services:
     image: nlesmann/farmersmarket-nginx:latest  # Pulls from Docker Hub
     ports:
       - "80:80"
+      - 443:443
     depends_on:
       - backend
     networks:
       - app-network
-    restart: always  # Ensures Nginx restarts if it fails
+    restart: always
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certbot/www:/var/www/certbot/:ro
 
 networks:
   app-network:
