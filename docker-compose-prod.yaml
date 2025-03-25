@@ -22,13 +22,13 @@ services:
       - app-network
     restart: always
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./nginx.conf:/etc/nginx/conf.d/:ro
       # - ./certbot/www:/var/www/certbot/:ro  # <---- currently testing this line
       - ./etc/letsencrypt:/etc/letsencrypt:ro
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
+      # - ./certbot/www/:/var/www/certbot/:rw
       - ./etc/letsencrypt:/etc/letsencrypt:rw
 
 networks:
