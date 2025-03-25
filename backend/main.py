@@ -71,20 +71,19 @@ def send_mail(form_data: ContactForm):
     
 @app.post('/api/send-email')
 async def send_email_route(form_data: ContactForm):
-    return {"status": "success"}
-    # try:
-    #     send_mail(form_data)
-    #     return JSONResponse(
-    #         status_code=200, 
-    #         content={'message': 'Email sent successfully!'}
-    #     )
-    # except HTTPException as e:
-    #     raise e
-    # except Exception as e:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-    #         detail=f'Error sending email: {str(e)}'
-    #     )
+    try:
+        send_mail(form_data)
+        return JSONResponse(
+            status_code=200, 
+            content={'message': 'Email sent successfully!'}
+        )
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f'Error sending email: {str(e)}'
+        )
     
 @app.get('/api/download/{file_name}')
 async def download_file(file_name):
