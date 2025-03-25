@@ -9,7 +9,7 @@ const FileDownload = () => {
     ];
 
     const handleDownload = (filename) => {
-        fetch(`http://backend:8000/api/download/${encodeURIComponent(filename)}`)
+        fetch(`'https://nlesmann.site/api/download/${encodeURIComponent(filename)}`)
             .then(response => response.blob())
             .then(blob => {
                 const url = URL.createObjectURL(blob);
