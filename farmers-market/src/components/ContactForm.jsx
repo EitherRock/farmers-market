@@ -31,7 +31,7 @@ const ContactForm = () => {
 
     // Send form data to your backend (we'll set this up next)
     try {
-      const response = await fetch('http://localhost:8000/api/send-email', {
+      const response = await fetch('http://backend:8000/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

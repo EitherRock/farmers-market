@@ -1,43 +1,3 @@
-// import React from "react";
-
-// const FileDownload = () => {
-//     const files = [
-//         { name: "2025 Sulphur Springs Farmers Market Application.docx", displayName: "Application" },
-//         { name: "2025 Sulphur Springs Farmers Market Guidelines.docx", displayName: "Sulphur Springs Guidelines"},
-//         { name: "FarmersMarketGuidelines_7-24-19.pdf", displayName: "Arkansas Guidelines" }
-//     ];
-
-//     const handleDownload = (filename) => {
-//         fetch(`http://localhost:8000/api/download/${encodeURIComponent(filename)}`)
-//             .then(response => response.blob())
-//             .then(blob => {
-//                 const url = URL.createObjectURL(blob);
-//                 const a = document.createElement("a");
-//                 a.href = url;
-//                 a.download = filename;
-//                 document.body.appendChild(a);
-//                 a.click();
-//                 document.body.removeChild(a);
-//                 URL.revokeObjectURL(url); // Cleanup
-//             })
-//             .catch(error => console.error("Download failed:", error));
-//     };
-
-//     return (
-//         <div>
-//             <h3>Select a file to download:</h3>
-//             {files.map((file) => (
-//                 <button key={file.name} onClick={() => handleDownload(file.name)}>
-//                     Download {file.displayName}
-//                 </button>
-//             ))}
-//         </div>
-//     );
-// };
-
-// export default FileDownload;
-
-
 import React from "react";
 import { FaDownload } from "react-icons/fa";
 
@@ -49,7 +9,7 @@ const FileDownload = () => {
     ];
 
     const handleDownload = (filename) => {
-        fetch(`http://localhost:8000/api/download/${encodeURIComponent(filename)}`)
+        fetch(`http://backend:8000/api/download/${encodeURIComponent(filename)}`)
             .then(response => response.blob())
             .then(blob => {
                 const url = URL.createObjectURL(blob);
