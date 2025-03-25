@@ -24,10 +24,10 @@ services:
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www:/var/www/certbot/:ro  # <---- currently testing this line
-    certbot:
-      image: certbot/certbot:latest
-      volumes:
-        - ./certbot/www/:/var/www/certbot/:rw
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
 
 networks:
   app-network:
