@@ -21,6 +21,7 @@ app = FastAPI()
 
 origins = [
     'http://localhost',
+    "http://frontend",
 ]
 
 app.add_middleware(
