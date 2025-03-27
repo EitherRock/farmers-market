@@ -2,17 +2,17 @@ version: '3.8'
 
 services:
   backend:
-    image: nlesmann/farmersmarket-backend:latest  # Pulls from Docker Hub
+    image: nlesmann/farmersmarket-backend:test_32725 
     env_file: 
       - .env
     ports:
       - "8000:8000"
     networks:
       - app-network
-    restart: always  # Ensures it restarts if it crashes
+    restart: always 
 
   nginx:
-    image: nlesmann/farmersmarket-nginx:latest  # Pulls from Docker Hub
+    image: nlesmann/farmersmarket-nginx:latest 
     ports:
       - "80:80"
       - 443:443
