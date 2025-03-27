@@ -3,6 +3,9 @@ from pydantic import BaseModel
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
+import boto3
+from botocore.exceptions import BotoCoreError, ClientError
+
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -15,12 +18,18 @@ load_dotenv()
 EMAIL_TO = os.getenv('EMAIL_TO')
 EMAIL_FROM = os.getenv('EMAIL_FROM')
 EMAIL_PASS = os.getenv('EMAIL_PASSWORD')
+ACCESS_KEY = os.getenv('ACCESS_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
+AWS_REGION = "us-east-2"
 
 
 app = FastAPI()
 
 origins = [
     'http://localhost',
+    "http://frontend",
+    "http://nlesmann.site",
+    "https://nlesmann.site"
 ]
 
 app.add_middleware(
@@ -29,6 +38,13 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],
+)
+
+client = boto3.client(
+    'ses',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY,
+    region_name=AWS_REGION
 )
 
 class ContactForm(BaseModel):
@@ -41,30 +57,24 @@ class ResourceFile(BaseModel):
     file_name: str
 
 def send_mail(form_data: ContactForm):
-    sender_email = EMAIL_FROM
-    receiver_email = EMAIL_TO
-    password = EMAIL_PASS
-
     msg = MIMEMultipart()
-    msg['From'] = sender_email
-    msg['To'] = receiver_email
+    msg['From'] = EMAIL_FROM
+    msg['To'] = EMAIL_TO
     msg['Subject'] = form_data.subject
 
     body = f'Name: {form_data.name}\nEmail: {form_data.email}\nMessage:\n{form_data.message}'
     msg.attach(MIMEText(body, 'plain'))
 
     try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(sender_email, password)
-        text = msg.as_string()
-        server.sendmail(sender_email, receiver_email, text)
-        server.quit()
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f'Error sending email: {str(e)}'
+        response = client.send_raw_email(
+            Source="lesmann.dev@gmail.com",
+            Destinations=["nathanlesmann@gmail.com"],
+            RawMessage={"Data": msg.as_string()},
         )
+        print("Email sent! Message ID:", response["MessageId"])
+
+    except (BotoCoreError, ClientError) as e:
+        print("Error sending email:", e)
     
 @app.post('/api/send-email')
 async def send_email_route(form_data: ContactForm):

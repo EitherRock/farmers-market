@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';  // For React 18+
-import App from './App';  // Import your App component
-import './index.css';  // Your CSS file
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
 
 const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);  // For React 18+
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <App />

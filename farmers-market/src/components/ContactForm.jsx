@@ -8,9 +8,8 @@ const ContactForm = () => {
     message: ''
   });
 
-  const [status, setStatus] = useState(null); // Used to show success or error messages
+  const [status, setStatus] = useState(null);
 
-  // Handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,19 +18,16 @@ const ContactForm = () => {
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simple form validation
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('Please fill in all fields.');
       return;
     }
 
-    // Send form data to your backend (we'll set this up next)
     try {
-      const response = await fetch('http://localhost:8000/api/send-email', {
+      const response = await fetch('https://nlesmann.site/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +37,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         setStatus('Message sent successfully!');
-        setFormData({ name: '', email: '', subject: '', message: '' }); // Reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setStatus('Something went wrong. Please try again.');
       }
