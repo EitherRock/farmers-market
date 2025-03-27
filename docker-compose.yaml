@@ -8,16 +8,16 @@ services:
     env_file: 
       - .env
     ports:
-      - "8000:8000"  # Exposes FastAPI backend to port 8000
+      - "8000:8000"
     networks:
       - app-network
 
   nginx:
     build:
-      context: .  # Build from the root context
-      dockerfile: Dockerfile.frontend  # Use the frontend Dockerfile to build the app and serve it with Nginx
+      context: .
+      dockerfile: Dockerfile.frontend
     ports:
-      - "80:80"  # Exposes Nginx to port 80
+      - "80:80"
     depends_on:
       - backend
     networks:
@@ -26,4 +26,3 @@ services:
 networks:
   app-network:
     driver: bridge
-    
