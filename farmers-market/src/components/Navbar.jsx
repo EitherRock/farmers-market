@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-gray-900 text-white py-4 px-6 md:px-20 flex items-center justify-between">
+    <nav className="w-full text-white py-4 px-6 md:px-20 flex items-center justify-between">
       {/* Logo */}
       <p className="text-xl font-bold">Sulphur Springs Farmers Market</p>
 
@@ -41,7 +41,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <ul className="absolute top-16 left-0 w-full bg-gray-900 text-white flex flex-col items-center space-y-4 py-6 md:hidden">
+        <ul className="absolute top-16 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-6 z-50 md:hidden">
           <li>
             <Link to="/" className="text-xl hover:text-[#D4AF37]" onClick={() => setIsOpen(false)}>
               Home

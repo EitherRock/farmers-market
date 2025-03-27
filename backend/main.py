@@ -29,7 +29,8 @@ origins = [
     'http://localhost',
     "http://frontend",
     "http://nlesmann.site",
-    "https://nlesmann.site"
+    "https://nlesmann.site",
+    "https://www.nlesmann.site"
 ]
 
 app.add_middleware(
@@ -75,7 +76,11 @@ def send_mail(form_data: ContactForm):
 
     except (BotoCoreError, ClientError) as e:
         print("Error sending email:", e)
-    
+
+@app.options("/api/send-email")
+async def handle_options():
+    return {}
+
 @app.post('/api/send-email')
 async def send_email_route(form_data: ContactForm):
     try:
